@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página Gigante con Partículas y Botones LED</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #4b0082, #8a2be2);
+    position: relative;
+  }
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  header {
+    padding: 3rem;
+    text-align: center;
+    font-size: 3rem;
+    text-shadow: 2px 2px 10px #000;
+    animation: fadeIn 2s ease-in;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgba(0,0,0,0.3);
+    padding: 1rem;
+  }
+  nav a {
+    color: #fff;
+    margin: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  nav a:hover {
+    background: #fff;
+    color: #4b0082;
+    transform: scale(1.15);
+  }
+  section {
+    padding: 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #fff200;
+    text-shadow: 1px 1px 8px #000;
+  }
+  p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+  .button {
+    background: #8000ff;
+    border: 3px solid #000;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 15px;
+    margin: 0.5rem;
+    box-shadow: 0 0 20px #aa00ff, 0 0 40px #aa00ff;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  .button:hover {
+    transform: scale(1.2) rotate(-3deg);
+    box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+  }
+  .wiki {
+    background-color: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-top: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .wiki:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  }
+  footer {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(0,0,0,0.5);
+    font-size: 1rem;
+  }
+  img, video {
+    border-radius: 15px;
+    margin-top: 1rem;
+    max-width: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease;
+  }
+  img:hover, video:hover {
+    transform: scale(1.05);
+  }
+  @keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<header>Página LED con Partículas y Botones 💜</header>
+<nav>
+  <a href="#seccion1">Bienvenida</a>
+  <a href="#seccion2">Listas</a>
+  <a href="#seccion3">Multimedia</a>
+  <a href="#seccion4">Wiki</a>
+</nav>
+<section id="seccion1">
+  <h2>Bienvenida</h2>
+  <p>¡Mira el fondo de partículas y los botones LED con borde negrito!</p>
+  <button class="button" onclick="alert('Botón 1 activado!')">Botón 1</button>
+  <button class="button" onclick="alert('Botón 2 activado!')">Botón 2</button>
+</section>
+<section id="seccion2">
+  <h2>Texto y Listas</h2>
+  <ul>
+    <li>Elemento 1</li>
+    <li>Elemento 2</li>
+    <li>Elemento 3</li>
+  </ul>
+  <ol>
+    <li>Paso uno</li>
+    <li>Paso dos</li>
+    <li>Paso tres</li>
+  </ol>
+</section>
+<section id="seccion3">
+  <h2>Imágenes y Video</h2>
+  <img src="https://via.placeholder.com/600x300" alt="Imagen de prueba">
+  <video controls>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+</section>
+<section id="seccion4">
+  <h2>Mini Wiki Interactivo</h2>
+  <div class="wiki">
+    <h3>HTML</h3>
+    <p>Lenguaje de marcado para crear páginas web.</p>
+  </div>
+  <div class="wiki">
+    <h3>CSS</h3>
+    <p>Lenguaje de estilos que da color y diseño a la web.</p>
+  </div>
+  <div class="wiki">
+    <h3>JavaScript</h3>
+    <p>Lenguaje de programación que permite interactividad.</p>
+  </div>
+</section>
+<footer>
+  &copy; 2025 Página LED Animada. Hecho con ❤️
+</footer>
+<script>
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+const particles = [];
+for(let i=0;i<150;i++){
+  particles.push({
+    x: Math.random()*width,
+    y: Math.random()*height,
+    r: Math.random()*3+1,
+    dx: (Math.random()-0.5)*1.5,
+    dy: (Math.random()-0.5)*1.5,
+    color: `hsl(${Math.random()*360},100%,70%)`
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,width,height);
+  for(let p of particles){
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    // mover partículas
+    p.x += p.dx;
+    p.y += p.dy;
+    if(p.x>width) p.x=0;
+    if(p.x<0) p.x=width;
+    if(p.y>height) p.y=0;
+    if(p.y<0) p.y=height;
+  }
+  // dibujar líneas cercanas
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      let dx = particles[i].x - particles[j].x;
+      let dy = particles[i].y - particles[j].y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist<100){
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(255,255,255,${1-dist/100})`;
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('resize',()=>{
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
